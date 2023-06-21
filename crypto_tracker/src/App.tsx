@@ -1,5 +1,9 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Router from './Router';
+import { darkTheme, lightTheme } from './theme';
+import React, {useState} from 'react'
+import {useRecoilValue} from 'recoil'
+import { isDarkAtom } from './routes/atoms';
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400&display=swap');
@@ -64,12 +68,41 @@ a {
 }
 `
 
+
+/* 
 function App() {
+  const [isDark, setIsDark] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const toggleDark = () => setIsDark(current => !current) // useState의 세터함수에 콜백함수를 넣어줄 경우, 첫번째 매개변수는 '현재 state값'을 가짐.
+
   return (
     <>
+    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
       <GlobalStyle />
-      <Router />
+      <Router isDark={isDark} toggleDark={toggleDark} />
+    </ThemeProvider>
     </>
   )
 }
-export default App;
+export default App; 
+*/
+
+
+///////////////////////
+
+
+function App() {
+  const isDark = useRecoilValue(isDarkAtom) 
+  console.log(isDark) // false
+
+  return (
+    <>
+    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+      <GlobalStyle />
+      <Router />
+    </ThemeProvider>
+    </>
+  )
+}
+export default App; 

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { fetchCoins } from './api'
+import { isDarkAtom } from './atoms'
+import { useSetRecoilState } from 'recoil'
 
 const Container = styled.div`
     padding: 0px 20px;
@@ -19,7 +21,7 @@ const CoinsList = styled.ul``
     
 const Coin = styled.li`
     background-color: white;
-    color: ${props => props.theme.bgColor};
+    color: ${props => props.theme.textColor};
     padding: 20px;
     margin-bottom: 10px;
     border-radius: 15px;
@@ -64,8 +66,24 @@ interface CoinInterface {
         "type": string
 }
 
-function Coins() {
+/* 
+interface ICoinsProps {
+    toggleDark: () => void
+}
+
+function Coins({toggleDark}: ICoinsProps) { 
     const { isLoading, data } = useQuery<CoinInterface[]>(["allCoins"], fetchCoins, { select: (data) => data.slice(0,100) })
+*/
+
+////////////////////
+
+function Coins() {
+  const { isLoading, data } = useQuery<CoinInterface[]>(["allCoins"], fetchCoins, { select: (data) => data.slice(0,100) })
+
+  const setDarkAtom = useSetRecoilState(isDarkAtom) // 리코일 상태를 업데이트하는 세터함수를 반환함.
+ 
+  const toggleDarkAtom = () => setDarkAtom(prev => !prev)
+
 
  /* 
     const [coins, setCoins] = useState<CoinInterface[]>([]);
@@ -87,6 +105,7 @@ function Coins() {
     <Container>
         <Header>
             <Title> Coin </Title>
+            <button onClick={toggleDarkAtom}> Toggle Mode </button>
         </Header>
         {isLoading ? (
             <Loader>"Loading..."</Loader>

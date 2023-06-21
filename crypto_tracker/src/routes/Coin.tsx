@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import { fetchCoinInfo, fetchCoinTickers } from './api'
 import Chart from './Chart'
 import Price from './Price'
+import {Helmet} from 'react-helmet'
 
 
 const Title = styled.h1`
@@ -140,7 +141,20 @@ interface PriceData {
   };
 }
 
-function Coin() {
+/* interface ICoinProps {
+  isDark: boolean
+}
+
+function Coin( { isDark }: ICoinProps  ) { */
+
+
+/////////////////////
+
+
+interface ICoinProps {
+}
+
+function Coin( { }: ICoinProps ) { 
     const { coinId } = useParams()
     const { state } = useLocation() as RouterState
 
@@ -155,7 +169,7 @@ function Coin() {
     // 쿼리 키를 고유한 값으로 만들어줌.
     // ! 연산자를 통해 undefined이더라도 변수를 사용할 수 있도록 해줌.
 
-    const {isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(["tickers", coinId], () => fetchCoinTickers(coinId!))
+    const {isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(["tickers", coinId], () => fetchCoinTickers(coinId!), { refetchInterval: 10000 } )
     
 
     /* 
@@ -187,6 +201,15 @@ function Coin() {
 
     return (
         <Container>
+
+             
+          <Helmet>
+            <title>
+              {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
+            </title>
+          </Helmet> 
+         
+
             <Header>
                 <Title>
                  {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
@@ -205,8 +228,8 @@ function Coin() {
             </OverviewItem>
 
             <OverviewItem>
-              <span>Symbol:</span>
-              <span>${infoData?.symbol}</span>
+              <span>Price:</span>
+              <span>${tickersData?.quotes.USD.price.toFixed(3)}</span>
             </OverviewItem>
 
             <OverviewItem>
@@ -237,9 +260,9 @@ function Coin() {
             <Tab isActive={priceMatch !== null}>
               <Link to={`/${coinId}/price`}> Price </Link>
             </Tab>
-          </Tabs>
-          
-          <Outlet />
+        </Tabs>
+
+          <Outlet context={{coinId}}/>
           </>
       )}
     </Container>
