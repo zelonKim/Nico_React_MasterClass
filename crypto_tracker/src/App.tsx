@@ -4,6 +4,7 @@ import { darkTheme, lightTheme } from './theme';
 import React, {useState} from 'react'
 import {useRecoilValue} from 'recoil'
 import { isDarkAtom } from './routes/atoms';
+import ToDoList from './ToDoList';
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400&display=swap');
@@ -92,7 +93,7 @@ export default App;
 ///////////////////////
 
 
-function App() {
+/* function App() {
   const isDark = useRecoilValue(isDarkAtom) 
   console.log(isDark) // false
 
@@ -105,4 +106,15 @@ function App() {
     </>
   )
 }
-export default App; 
+export default App;  */
+
+
+
+function App() {
+  return (
+    <>
+      <ToDoList />
+    </>
+  )
+}
+export default App
