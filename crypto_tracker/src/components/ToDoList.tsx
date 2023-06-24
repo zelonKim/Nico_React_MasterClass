@@ -141,26 +141,86 @@ export default ToDoList;  */
 /////////////////////
 
 
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import CreateToDo from './CreateToDo'
-import { toDoState } from './atoms'
+import { Categories, categoryState, toDoSelector, toDoState } from './atoms'
 import ToDo from './ToDo'
 
 
 function ToDoList() {
 
+    /*    
     const toDos = useRecoilValue(toDoState)
     console.log(toDos) // 인풋창에 a를 입력하고 Add 버튼을 누르면 콘솔창에 {text: 'a', id: 1687584917037, category: 'TO_DO'}가 출력됨.
+    */
+    
+    /*  
+    const selectorOutput = useRecoilValue(toDoSelector)
+    console.log(selectorOutput) // 1 
+    */
 
-    return (
+    const selectorOutput = useRecoilValue(toDoSelector)
+    console.log(selectorOutput) // [Array(1), Array(0), Array(0)]
+
+
+    
+    /* const [toDo, doing, done] = useRecoilValue(toDoSelector) */
+    
+    const toDos = useRecoilValue(toDoSelector)
+    const [category, setCategory] = useRecoilState(categoryState)
+
+    const onInput = (event: React.FormEvent<HTMLSelectElement>) => { 
+     /*    console.log(event.currentTarget.value) 
+        // 선택 상자에서 Doing 옵션을 선택하면 콘솔창에 DOING이 출력됨.
+        // 선택 상자에서 Done 옵션을 선택하면 콘솔창에 DONE이 출력됨. */
+        
+        setCategory(event.currentTarget.value as any)
+    }
+    // console.log(category) // TO_DO
+
+/*
+        <option value="TO_DO">To Do</option>
+        <option value="DOING">Doing</option>
+        <option value="DONE">Done</option> 
+    </select>
+    <CreateToDo />
+        {category === "TO_DO" && toDo.map(aToDo => <ToDo key={aToDo.id} {...aToDo} /> )}
+        {category === "DOING" && doing.map(aToDo => <ToDo key={aToDo.id} {...aToDo} /> )}
+        {category === "DONE" && done.map(aToDo => <ToDo key={aToDo.id} {...aToDo} /> )}  
+*/
+    console.log(toDos)
+        return (
         <div>
             <h1>To Dos</h1>
             <hr />
+            <select value={category} onInput={onInput}>
+                <option value={Categories.TO_DO}>To Do</option>
+                <option value={Categories.DOING}>Doing</option>
+                <option value={Categories.DONE}>Done</option>
+            </select>
                 <CreateToDo />
-            <ul>
-                {toDos.map((toDo) => (<ToDo key={toDo.id} {...toDo} />))}
-            </ul>
+                 {toDos?.map((toDo) => ( <ToDo key={toDo.id} {...toDo} />
+            ))}
         </div>
+
+           /*  <h2>To Do</h2>
+            <ul>
+                {toDo.map((toDo) => (<ToDo key={toDo.id} {...toDo} />
+                ))}
+            </ul>
+
+            <h2>Doing</h2>
+            <ul>
+                {doing.map((toDo) => (<ToDo key={toDo.id} {...toDo} />
+                ))}
+            </ul>
+
+            <h2>Done</h2>
+            <ul>
+                {done.map((toDo) => (<ToDo key={toDo.id} {...toDo} />
+                ))}
+            </ul>
+            <hr /> */
     )
 }
 export default ToDoList
