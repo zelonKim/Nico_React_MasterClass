@@ -148,13 +148,15 @@ import ToDo from './ToDo'
 
 
 function ToDoList() {
+
     const toDos = useRecoilValue(toDoState)
+    console.log(toDos) // 인풋창에 a를 입력하고 Add 버튼을 누르면 콘솔창에 {text: 'a', id: 1687584917037, category: 'TO_DO'}가 출력됨.
 
     return (
         <div>
             <h1>To Dos</h1>
             <hr />
-            <CreateToDo />
+                <CreateToDo />
             <ul>
                 {toDos.map((toDo) => (<ToDo key={toDo.id} {...toDo} />))}
             </ul>
