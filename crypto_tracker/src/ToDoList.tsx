@@ -75,7 +75,7 @@ export default ToDoList;
 ////////////////////////////////
 
 
- import { useForm } from 'react-hook-form'
+/*  import { useForm } from 'react-hook-form'
 
 type IForm = {
     email: string;
@@ -134,4 +134,56 @@ function ToDoList() {
         </div>
     )
 }
-export default ToDoList; 
+export default ToDoList;  */
+
+
+
+/////////////////////
+
+
+
+import {useForm} from 'react-hook-form'
+import { atom, useRecoilState } from 'recoil'
+
+const toDoState = atom({
+    key: "toDo",
+    default: [],
+})
+
+interface IForm {
+    toDo: string
+}
+
+interface IToDo {
+    text: string;
+    category: "DONE" | "DOING" | "TO_DO"
+}
+
+function ToDoList() {
+    const [value, modFn] = useRecoilState(toDoState)
+
+    const { register, handleSubmit, setValue } = useForm<IForm>()
+
+    const handleValid = (data: IForm) => {
+        console.log("add to do", data.toDo)
+        setValue("toDo", "")
+    }
+
+    return (
+        <div>
+            <h1>To Dos</h1>
+            <hr />
+            <form onSubmit = {handleSubmit(handleValid)}>
+                <input
+                    {...register("toDo", {
+                        required: "Please write your To Do",
+                    })}
+                    placeholder="Write To Do"
+                />
+                <button> Add </button>
+            </form>
+            <ul> </ul>
+        </div>
+    )
+}
+export default ToDoList
