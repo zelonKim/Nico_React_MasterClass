@@ -1,4 +1,5 @@
-/* import { IToDo } from "./atoms"
+
+/*  import { IToDo } from "./atoms"
 
 function ToDo({text, category}: IToDo) {
 
@@ -21,13 +22,14 @@ function ToDo({text, category}: IToDo) {
     </li>
     )
 }
-export default ToDo */
+export default ToDo  */
+
 
 
 
 ////////////////
 
-
+ 
 import { useSetRecoilState } from "recoil";
 import { Categories, IToDo, toDoState } from "./atoms"
 
@@ -58,7 +60,7 @@ function ToDo({ text, category, id }: IToDo) {
         })
     }
 
-    /*     
+    
         {category !== "DOING" && 
         (<button name="DOING" onClick={onClick}> Doing </button>
     )}
@@ -67,9 +69,10 @@ function ToDo({ text, category, id }: IToDo) {
     )}
         {category !== "DONE" &&
         (<button name="DONE" onClick={onClick}> Done </button>
-    )} */
+    )} 
 
-    return (
+ 
+/*  return (
     <li> 
         <span> {text} </span>
         {category !== Categories.DOING && 
@@ -83,6 +86,6 @@ function ToDo({ text, category, id }: IToDo) {
         )}
 
     </li>
-    )
+    ) */
 }
-export default ToDo
+export default ToDo 

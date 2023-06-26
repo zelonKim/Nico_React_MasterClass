@@ -2,9 +2,11 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Router from './Router';
 import { darkTheme, lightTheme } from './theme';
 import React, {useState} from 'react'
-import {useRecoilValue} from 'recoil'
 import { isDarkAtom } from './routes/atoms';
 import ToDoList from './components/ToDoList';
+import {useRecoilState, useRecoilValue} from 'recoil'
+import { hourSelector, minuteState } from './components/atoms';
+import {DragDropContext, Draggable, Droppable} from 'react-beautiful-dnd'
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400&display=swap');
@@ -109,7 +111,7 @@ export default App;
 export default App;  */
 
 
-
+/* 
 function App() {
   return (
     <>
@@ -117,4 +119,73 @@ function App() {
     </>
   )
 }
-export default App
+export default App */
+
+
+///////////////
+
+/* function App() {
+  const [minutes, setMinutes] = useRecoilState(minuteState) // [atom의 상태값, atom의 상태 업데이트 함수]
+  const [hours, setHours] = useRecoilState(hourSelector); // [get메서드의 리턴값, set메서드에 새로운 값을 전달하는 함수]
+  
+  const onMinutesChange = (event: React.FormEvent<HTMLInputElement>) => {
+    setMinutes(+event.currentTarget.value) // atom의 상태값을 업데이트함.
+  }
+
+  const onHoursChange = (event: React.FormEvent<HTMLInputElement>) => {
+    setHours(+event.currentTarget.value) // set메서드의 두 번째 매개변수로 값이 전달됨.
+  }
+
+  return (
+    <div>
+      <input value={minutes} onChange={onMinutesChange} type="number" placeholder="Minutes" /> 
+      <input value={hours} onChange={onHoursChange} type="number" placeholder="Hours" />
+    </div>
+  )
+}
+export default App;  */
+
+
+/////////////////////
+
+
+function App() {
+  const onDragEnd = () => {} // 유저가 드래그를 끝낸 시점에 불려지는 함수 (필수 프로퍼티)
+  
+  return( // Droppable과 Draggable의 children은 함수여야 함.
+  <>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <div>
+        <Droppable droppableId="one"> 
+
+          {(magic) => (
+            <ul ref={magic.innerRef} {...magic.droppableProps}>
+
+              <Draggable draggableId="first" index={0}>
+                  {(magic) => (
+                    <li ref={magic.innerRef} {...magic.draggableProps}>
+                     <span {...magic.dragHandleProps}>★</span>
+                      One
+                     </li>
+                  )}
+              </Draggable>
+
+              <Draggable draggableId="second" index={1}>
+                  {(magic) => (
+                    <li ref={magic.innerRef} {...magic.draggableProps}>
+                    <span {...magic.dragHandleProps}>★</span>
+                      Two
+                    </li>
+                  )}
+              </Draggable>
+
+            </ul> 
+           )}
+
+        </Droppable>
+      </div>
+    </DragDropContext>
+  </>
+  )
+}
+export default App;

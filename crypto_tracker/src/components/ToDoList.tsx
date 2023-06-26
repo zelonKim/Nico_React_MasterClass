@@ -1,7 +1,5 @@
-
-/* 
-function ToDoList() {
-    const [ toDo, setToDo ] = useState("")
+/* function ToDoList() {
+    const [ toDo, setToDo ] = useStat("")
     const [ toDoError, setToDoError] = useState("")
   
     const onChange = (event: React.FormEvent<HTMLInputElement>) => {
@@ -28,8 +26,8 @@ function ToDoList() {
       </div>
     )
   }
-  export default ToDoList 
-*/
+  export default ToDoList  */
+
 
 
 
@@ -37,8 +35,8 @@ function ToDoList() {
 
 
 
-/* 
-import { useForm } from 'react-hook-form'
+
+/* import { useForm } from 'react-hook-form'
 
 function ToDoList() {
     const { register, watch, handleSubmit, formState, setValue } = useForm()
@@ -66,7 +64,7 @@ function ToDoList() {
     )
 }
 export default ToDoList;  
-*/
+ */
 
 
 
@@ -75,7 +73,7 @@ export default ToDoList;
 ////////////////////////////////
 
 
-/*  import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 type IForm = {
     email: string;
@@ -134,51 +132,48 @@ function ToDoList() {
         </div>
     )
 }
-export default ToDoList;  */
+export default ToDoList;  
 
 
 
 /////////////////////
 
 
-import { useRecoilState, useRecoilValue } from 'recoil'
+/* import { useRecoilState, useRecoilValue } from 'recoil'
 import CreateToDo from './CreateToDo'
 import { Categories, categoryState, toDoSelector, toDoState } from './atoms'
 import ToDo from './ToDo'
 
 
-function ToDoList() {
+function ToDoList() { 
 
-    /*    
     const toDos = useRecoilValue(toDoState)
     console.log(toDos) // 인풋창에 a를 입력하고 Add 버튼을 누르면 콘솔창에 {text: 'a', id: 1687584917037, category: 'TO_DO'}가 출력됨.
-    */
+
     
-    /*  
-    const selectorOutput = useRecoilValue(toDoSelector)
-    console.log(selectorOutput) // 1 
-    */
 
     const selectorOutput = useRecoilValue(toDoSelector)
+    console.log(selectorOutput) // 1 
+
+
+ const selectorOutput = useRecoilValue(toDoSelector)
     console.log(selectorOutput) // [Array(1), Array(0), Array(0)]
 
 
     
-    /* const [toDo, doing, done] = useRecoilValue(toDoSelector) */
+    const [toDo, doing, done] = useRecoilValue(toDoSelector)
     
-    const toDos = useRecoilValue(toDoSelector)
+   const toDos = useRecoilValue(toDoSelector)
     const [category, setCategory] = useRecoilState(categoryState)
 
     const onInput = (event: React.FormEvent<HTMLSelectElement>) => { 
-     /*    console.log(event.currentTarget.value) 
+    console.log(event.currentTarget.value) 
         // 선택 상자에서 Doing 옵션을 선택하면 콘솔창에 DOING이 출력됨.
-        // 선택 상자에서 Done 옵션을 선택하면 콘솔창에 DONE이 출력됨. */
+        // 선택 상자에서 Done 옵션을 선택하면 콘솔창에 DONE이 출력됨. 
         
-        setCategory(event.currentTarget.value as any)
-    }
-    // console.log(category) // TO_DO
+        // setCategory(event.currentTarget.value as any)}
+    // console.log(category) // TO_DO 
 
-/*
         <option value="TO_DO">To Do</option>
         <option value="DOING">Doing</option>
         <option value="DONE">Done</option> 
@@ -187,8 +182,8 @@ function ToDoList() {
         {category === "TO_DO" && toDo.map(aToDo => <ToDo key={aToDo.id} {...aToDo} /> )}
         {category === "DOING" && doing.map(aToDo => <ToDo key={aToDo.id} {...aToDo} /> )}
         {category === "DONE" && done.map(aToDo => <ToDo key={aToDo.id} {...aToDo} /> )}  
-*/
-    console.log(toDos)
+
+  console.log(toDos)
         return (
         <div>
             <h1>To Dos</h1>
@@ -203,7 +198,7 @@ function ToDoList() {
             ))}
         </div>
 
-           /*  <h2>To Do</h2>
+         <h2>To Do</h2>
             <ul>
                 {toDo.map((toDo) => (<ToDo key={toDo.id} {...toDo} />
                 ))}
@@ -220,7 +215,7 @@ function ToDoList() {
                 {done.map((toDo) => (<ToDo key={toDo.id} {...toDo} />
                 ))}
             </ul>
-            <hr /> */
-    )
+            <hr /> 
+     )
 }
-export default ToDoList
+export default ToDoList  */
