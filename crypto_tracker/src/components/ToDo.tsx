@@ -1,5 +1,6 @@
-
-/*  import { IToDo } from "./atoms"
+import React from "react";
+/* 
+mport { IToDo } from "./atoms"
 
 function ToDo({text, category}: IToDo) {
 
@@ -30,7 +31,7 @@ export default ToDo  */
 ////////////////
 
  
-import { useSetRecoilState } from "recoil";
+/* import { useSetRecoilState } from "recoil";
 import { Categories, IToDo, toDoState } from "./atoms"
 
 
@@ -70,7 +71,7 @@ function ToDo({ text, category, id }: IToDo) {
         {category !== "DONE" &&
         (<button name="DONE" onClick={onClick}> Done </button>
     )} 
-
+ */
  
 /*  return (
     <li> 
@@ -86,6 +87,7 @@ function ToDo({ text, category, id }: IToDo) {
         )}
 
     </li>
-    ) */
-}
-export default ToDo 
+    ) 
+ }
+export default ToDo  
+*/

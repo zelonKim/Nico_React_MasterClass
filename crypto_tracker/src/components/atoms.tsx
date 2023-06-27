@@ -1,6 +1,19 @@
 import { atom, selector } from "recoil";
 
-export const minuteState = atom({
+interface IToDoState {
+    [key: string]: string[]
+}
+
+export const toDoState = atom<IToDoState>({
+    key: "toDo",
+    default: {
+        to_do: ['a','b'],
+        doing: ['c','d','e'],
+        done: ['f'],
+    },
+})
+
+/* export const minuteState = atom({
     key: "minutes",
     default: 0,
 })
@@ -15,7 +28,7 @@ export const hourSelector = selector<number>({
         const minutes = Number(newValue) * 60 
         set(minuteState, minutes) // set(아톰 변수명, 업데이트할 값)으로 atom의 상태값을 업데이트 함.
     }
-})
+}) */
 
 
 
@@ -34,7 +47,7 @@ export const hourSelector = selector<number>({
 
 /////////////////////
 
- type categories = "DONE" | "DOING" | "TO_DO"
+ /* type categories = "DONE" | "DOING" | "TO_DO"
 
     export interface IToDo {
         text: string;
@@ -53,7 +66,7 @@ export enum Categories{
     "TO_DO",
     "DOING",
     "DONE"
-}
+} */
 
 /*  
 export interface IToDo {
@@ -71,10 +84,10 @@ export const categoryState = atom<Categories>({
  
 
 
-export const toDoState = atom<IToDo[]>({
+/* export const toDoState = atom<IToDo[]>({
     key: "toDo",
     default: [],
-})
+}) */
 
 
 /* export const toDoSelector = selector({
@@ -98,7 +111,7 @@ export const toDoState = atom<IToDo[]>({
     }
 })  */
 
-export const toDoSelector = selector({
+/* export const toDoSelector = selector({
     key:"toDoSelector",
     get: ({get}) => {
         const toDos = get(toDoState)
@@ -114,3 +127,4 @@ export const toDoSelector = selector({
             return toDos.filter(toDo => toDo.category === "DONE") 
     }
 }) 
+ */

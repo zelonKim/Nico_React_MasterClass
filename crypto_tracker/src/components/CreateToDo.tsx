@@ -1,10 +1,10 @@
 
  import { useForm } from "react-hook-form";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { categoryState, toDoState } from "./atoms";
+import {  toDoState } from "./atoms";
 
 
-interface IForm {
+/* interface IForm {
     toDo: string
 }
 
@@ -35,3 +35,4 @@ function CreateToDo() {
     )
 }
 export default CreateToDo; 
+ */
