@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import {createGlobalStyle, ThemeProvider} from 'styled-components'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { RecoilRoot } from 'recoil';
-import { darkTheme } from './theme';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { RecoilRoot } from "recoil";
+import { darkTheme } from "./theme";
 
 export const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400&display=swap');
@@ -61,7 +61,7 @@ table {
 body {
   font-weight: 300;
   font-family: 'Source Sans 3', sans-serif;
-  background-color: ${props => props.theme.bgColor};
+  background-color: ${(props) => props.theme.bgColor};
   color: black;
   line-height: 1.2;
 }
@@ -69,22 +69,21 @@ a {
   text-decoration: none;
   color: inherit;
 }
-`
+`;
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 
 root.render(
-      <RecoilRoot>
-       <QueryClientProvider client={queryClient}>
-          <ThemeProvider theme={darkTheme}>
-            <GlobalStyle />
-              <App />
-          </ThemeProvider>
-        </QueryClientProvider>
-      </RecoilRoot>
+  <RecoilRoot>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={darkTheme}>
+        <GlobalStyle />
+        <App />
+      </ThemeProvider>
+    </QueryClientProvider>
+  </RecoilRoot>
 );
-
