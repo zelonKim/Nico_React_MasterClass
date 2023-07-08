@@ -8,11 +8,8 @@ export default function IndexPage() {
       <div></div>
     </Layout>
   );
-};
-
+}
 
 export function Head() {
-  return(
-    <Seo title="Home" />
-  )
+  return <Seo title="Home" />;
 }

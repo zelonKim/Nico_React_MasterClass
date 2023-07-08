@@ -1,3 +1,4 @@
+import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 
 interface ISeoProps {
@@ -5,6 +6,19 @@ interface ISeoProps {
 }
 
 export default function Seo({ title }: ISeoProps) {
-    return <title> {title} | DevStickers </title>
+    const data = useStaticQuery(graphql`
+        query SeoQuery {
+            site {
+                siteMetadata{
+                    title
+                    siteUrl
+                    description
+                }
+            }
+        }
+    `)
+    console.log(data)
+
+    return <title> {title} | {data.site?.siteMetadata?.title} </title>
 }
 
