@@ -17,7 +17,6 @@ export default function Seo({ title }: ISeoProps) {
             }
         }
     `)
-    console.log(data)
 
     return <title> {title} | {data.site?.siteMetadata?.title} </title>
 }
