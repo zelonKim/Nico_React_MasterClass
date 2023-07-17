@@ -501,7 +501,7 @@ function App() {
 export default App; */
 
 ////////////////////
-
+/* 
 const Wrapper = styled(motion.div)`
   height: 100vh;
   width: 100vw;
@@ -576,4 +576,8 @@ function App() {
     </Wrapper>
   );
 }
-export default App;
+export default App; */
+
+////////////////////////
+
+

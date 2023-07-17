@@ -1,0 +1,13 @@
+.hello {
+    display: flex;
+    justify-content: space-between;
+    background-color: tomato;
+}
+
+.active {
+    color: red;
+}
+
+.inactive {
+    color: blue;
+}
