@@ -34,6 +34,7 @@ export default function NavBar() {
 ////////////////////
 
 
+/* 
 import Link from "next/link"
 import { useRouter } from "next/router";
 import styles from "./NavBar.module.css"
@@ -46,4 +47,69 @@ export default function NavBar() {
             <Link href="/about" className={router.pathname === "/about" ? styles.active : styles.inactive}> About </Link>
         </nav>
     ) 
-}
+} 
+*/
+
+////////////////////////
+
+/* import Link from "next/link"
+import { useRouter } from "next/router";
+import styles from "./NavBar.module.css"
+
+export default function NavBar() {
+    const router = useRouter();
+    return (
+        <nav>
+            <span>
+                <Link href="/" className={router.pathname === "/" ? "active": ""}> Home </Link>
+                <Link href="/about" className={router.pathname === "/about" ? "active": ""}> About </Link>
+            </span>
+
+            <style jsx>{`
+                nav {
+                    background-color: tomato;
+                }
+                span {
+                    text-decoration: none;
+                }
+                .active {
+                    color: yellow;
+                }
+            `}</style>
+            
+        </nav>
+    ) 
+}  */
+
+/////////////////
+
+
+import Link from "next/link"
+import { useRouter } from "next/router";
+import styles from "./NavBar.module.css"
+
+export default function NavBar() {
+    const router = useRouter();
+    return (
+        <nav>
+            <img src="/vercel.svg" />
+            <span>
+                <Link href="/"> Home </Link>
+                <Link href="/about"> About </Link>
+            </span>
+
+            <style jsx>{`
+                nav {
+                    background-color: red;
+                }
+                span {
+                    text-decoration: none;
+                }
+            `}</style>
+            
+        </nav>
+    ) 
+} 
+
+
+
