@@ -93,17 +93,32 @@ export default function NavBar() {
     return (
         <nav>
             <img src="/vercel.svg" />
-            <span>
+            <div>
                 <Link href="/"> Home </Link>
                 <Link href="/about"> About </Link>
-            </span>
+            </div>
 
             <style jsx>{`
                 nav {
-                    background-color: red;
+                    display: flex;
+                    gap: 10px;
+                    flex-direction: column;
+                    align-items: center;
+                    padding-top: 20px;
+                    padding-bottom: 10px;
+                    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+                                rgba(0, 0, 0, 0.3) 0px 30px 60px -30px
+                    }
+                img {
+                    max-width: 100px;
+                    margin-bottom: 5px;
                 }
-                span {
-                    text-decoration: none;
+                .active {
+                    color: tomato;
+                }
+                nav div {
+                    display: flex;
+                    gap: 10px
                 }
             `}</style>
             
